@@ -1,17 +1,17 @@
 {
-  "framework": "Example Skills Framework",
-  "competencies": [
-    {
-      "name": "War of Rights Activism",
-      "description": "Advocating and organising around historical war communities."
-    },
-    {
-      "name": "Community Leadership",
-      "description": "Leading discussions and organising groups."
-    },
-    {
-      "name": "Web Development",
-      "description": "Building websites using HTML, CSS and JavaScript."
-    }
-  ]
+ "framework": "Example Framework",
+ "competencies": [
+  {
+   "name": "Leadership",
+   "description": "Ability to lead and organise groups."
+  },
+  {
+   "name": "Community Engagement",
+   "description": "Working with communities and teams."
+  },
+  {
+   "name": "Web Development",
+   "description": "Building websites and applications."
+  }
+ ]
 }
