@@ -1,40 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>This is banrab fry the guy, that rhymthsms</title>
+<title>CaSS Dashboard</title>
 
 <link rel="stylesheet" href="css/styles.css">
+
 <script src="https://cdn.jsdelivr.net/npm/cassproject@latest/cass.min.js"></script>
 
 </head>
 
 <body>
 
+<div class="layout">
+
+<!-- bar -->
+<div class="sidebar">
+
+<h2>CaSS</h2>
+
+<button onclick="showDashboard()">Dashboard</button>
+<button onclick="loadSkills()">Skills</button>
+<button onclick="clearSkills()">Clear</button>
+
+</div>
+
+<!-- Main -->
+<div class="content">
+
 <header>
-<h1>Real janab</h1>
+<h1>Competency Dashboard</h1>
 </header>
 
-<main>
+<section id="dashboard">
 
-<p>War of rights activist.</p>
+<div class="card">
+<h3>Welcome</h3>
+<p>This is your CaSS competency system dashboard.</p>
+</div>
 
-<img 
-src="https://avatars.githubusercontent.com/u/164216919?v=4"
-alt="BarnFryTheGuy">
+<div class="card">
+<h3>Framework</h3>
+<p>Load your skills framework to view competencies.</p>
+</div>
 
-<br><br>
+</section>
 
-<button onclick="loadSkills()">Load Skills Framework</button>
+<section id="skills"></section>
 
-<div id="skills"></div>
+</div>
 
-</main>
+</div>
 
-<script src="js/cass-app.js"></script>
+<script src="js/app.js"></script>
 
 </body>
 </html>
