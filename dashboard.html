@@ -1,38 +1,329 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<title>Modern Dashboard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>CaSS Dashboard</title>
+<style>
 
-<script src="https://cdn.jsdelivr.net/npm/cassproject@latest/cass.min.js"></script>
+:root{
+--main:#7c5cff;
+--secondary:#00e5a8;
+--bg:#0e0f16;
+--panel:#171a25;
+--text:#e8e8e8;
+}
 
-<link rel="stylesheet" href="css/styles.css">
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,system-ui,Arial;
+}
 
+body{
+background:radial-gradient(circle at top,var(--main),var(--bg));
+color:var(--text);
+height:100vh;
+display:flex;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:230px;
+background:rgba(0,0,0,0.35);
+backdrop-filter:blur(20px);
+padding:25px;
+display:flex;
+flex-direction:column;
+gap:25px;
+}
+
+.logo{
+font-size:18px;
+font-weight:600;
+}
+
+.nav a{
+display:block;
+padding:10px;
+margin-bottom:8px;
+border-radius:8px;
+text-decoration:none;
+color:#ccc;
+transition:.2s;
+}
+
+.nav a:hover{
+background:rgba(255,255,255,0.06);
+color:white;
+}
+
+/* MAIN */
+
+.main{
+flex:1;
+padding:30px;
+overflow:auto;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.search{
+background:var(--panel);
+padding:10px 15px;
+border-radius:30px;
+border:none;
+color:white;
+width:260px;
+}
+
+/* CARDS */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+margin-bottom:30px;
+}
+
+.card{
+background:var(--panel);
+padding:20px;
+border-radius:14px;
+box-shadow:0 0 25px rgba(0,0,0,0.4);
+}
+
+.card h2{
+margin-top:10px;
+}
+
+.green{color:var(--secondary);}
+.red{color:#ff5b5b;}
+.yellow{color:#ffd85b;}
+
+/* CHART */
+
+.chart{
+height:260px;
+background:linear-gradient(
+180deg,
+rgba(124,92,255,.25),
+rgba(0,0,0,0)
+);
+border-radius:14px;
+margin-bottom:25px;
+position:relative;
+overflow:hidden;
+}
+
+.chart-line{
+position:absolute;
+bottom:30px;
+left:0;
+width:100%;
+height:2px;
+background:linear-gradient(
+90deg,
+transparent,
+var(--secondary),
+var(--main)
+);
+transform:skewY(-8deg);
+}
+
+/* RIGHT PANEL */
+
+.right{
+width:260px;
+background:rgba(0,0,0,0.35);
+padding:20px;
+backdrop-filter:blur(20px);
+overflow:auto;
+}
+
+.history-item{
+padding:10px 0;
+border-bottom:1px solid rgba(255,255,255,.06);
+font-size:14px;
+}
+
+/* THEME PANEL */
+
+.theme{
+position:fixed;
+bottom:20px;
+left:260px;
+background:var(--panel);
+padding:15px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,.6);
+}
+
+.theme label{
+display:block;
+font-size:12px;
+margin-top:8px;
+}
+
+.palette{
+display:flex;
+gap:6px;
+margin-top:8px;
+}
+
+.swatch{
+width:22px;
+height:22px;
+border-radius:6px;
+cursor:pointer;
+}
+
+</style>
 </head>
 
 <body>
 
+<!-- SIDEBAR -->
+
 <div class="sidebar">
 
-<h2>CaSS</h2>
+<div class="logo">YOURLOGO</div>
 
-<button onclick="loadFrameworks()">Frameworks</button>
-<button onclick="loadCompetencies()">Competencies</button>
+<div class="nav">
+<a href="#">Dashboard</a>
+<a href="#">Transfers</a>
+<a href="#">Analytics</a>
+<a href="#">Savings</a>
+<a href="#">Records</a>
+<a href="#">History</a>
+<a href="#">Settings</a>
+</div>
 
 </div>
+
+
+<!-- MAIN -->
 
 <div class="main">
 
+<div class="topbar">
 <h1>Dashboard</h1>
+<input class="search" placeholder="Search">
+</div>
 
-<div id="data"></div>
+
+<div class="cards">
+
+<div class="card">
+Total Amount
+<h2>$187,001</h2>
+</div>
+
+<div class="card">
+Deposit
+<h2 class="green">$21,345</h2>
+</div>
+
+<div class="card">
+Spent
+<h2 class="red">$7,321</h2>
+</div>
+
+<div class="card">
+Expected
+<h2 class="yellow">$81,987</h2>
+</div>
 
 </div>
 
-<script src="js/cass.js"></script>
-<script src="js/dashboard.js"></script>
+
+<div class="chart">
+<div class="chart-line"></div>
+</div>
+
+</div>
+
+
+<!-- RIGHT PANEL -->
+
+<div class="right">
+
+<h3>History</h3>
+
+<div class="history-item">House Rent - $400</div>
+<div class="history-item">Health - $90</div>
+<div class="history-item">Car Expense - $120</div>
+<div class="history-item">Deposit + $800</div>
+<div class="history-item">Insurance - $60</div>
+
+</div>
+
+
+<!-- THEME CUSTOMIZER -->
+
+<div class="theme">
+
+<b>Theme</b>
+
+<label>Main Color</label>
+<input type="color" id="mainColor">
+
+<label>Secondary</label>
+<input type="color" id="secColor">
+
+<label>Background</label>
+<input type="color" id="bgColor">
+
+<div class="palette">
+
+<div class="swatch" style="background:#7c5cff"
+onclick="preset('#7c5cff','#00e5a8','#0e0f16')"></div>
+
+<div class="swatch" style="background:#ff4d6d"
+onclick="preset('#ff4d6d','#00f5d4','#111')"></div>
+
+<div class="swatch" style="background:#00c2ff"
+onclick="preset('#00c2ff','#7effa1','#0c0f18')"></div>
+
+<div class="swatch" style="background:#ff8c42"
+onclick="preset('#ff8c42','#ffe066','#111')"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+const root=document.documentElement
+
+document.getElementById("mainColor").oninput=e=>{
+root.style.setProperty('--main',e.target.value)
+}
+
+document.getElementById("secColor").oninput=e=>{
+root.style.setProperty('--secondary',e.target.value)
+}
+
+document.getElementById("bgColor").oninput=e=>{
+root.style.setProperty('--bg',e.target.value)
+}
+
+function preset(m,s,b){
+root.style.setProperty('--main',m)
+root.style.setProperty('--secondary',s)
+root.style.setProperty('--bg',b)
+}
+
+</script>
 
 </body>
-
 </html>
