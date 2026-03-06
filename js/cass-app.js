@@ -1,32 +1,49 @@
-async function loadSkills() {
+function showDashboard(){
 
-    const container = document.getElementById("skills");
-    container.innerHTML = "";
+document.getElementById("skills").innerHTML="";
 
-    try {
+}
 
-        const response = await fetch("frameworks/framework.json");
-        const data = await response.json();
+function clearSkills(){
 
-        data.competencies.forEach(skill => {
+document.getElementById("skills").innerHTML="";
 
-            const card = document.createElement("div");
-            card.className = "skill-card";
+}
 
-            card.innerHTML =
-                "<h3>" + skill.name + "</h3>" +
-                "<p>" + skill.description + "</p>";
+async function loadSkills(){
 
-            container.appendChild(card);
+const container=document.getElementById("skills");
 
-        });
+container.innerHTML="Loading framework...";
 
-    } catch (error) {
+try{
 
-        container.innerHTML = "Error loading framework.";
+const response=await fetch("frameworks/framework.json");
 
-        console.error(error);
+const data=await response.json();
 
-    }
+container.innerHTML="";
+
+data.competencies.forEach(skill=>{
+
+const card=document.createElement("div");
+
+card.className="skill-card";
+
+card.innerHTML=
+"<h3>"+skill.name+"</h3>"+
+"<p>"+skill.description+"</p>";
+
+container.appendChild(card);
+
+});
+
+}catch(err){
+
+container.innerHTML="Failed to load framework";
+
+console.error(err);
+
+}
 
 }
