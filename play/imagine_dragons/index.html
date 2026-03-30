@@ -1,32 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
   <title>Miragine War</title>
+  <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-    }
-    h1 { margin-top: 20px; }
-    iframe {
-      width: 100%;
-      max-width: 800px;
-      height: 600px;
-      border: none;
-      margin-top: 20px;
-    }
+    body { margin:0; background:#111; }
   </style>
 </head>
 <body>
-  <h1>Miragine War</h1>
-  <p>Play the classic strategy war game!</p>
-  <iframe src="https://www.miniplay.com/embed/miragine-war" allowfullscreen></iframe>
-  <p>If the game doesn’t load, your browser may block third‑party embeds.</p>
+
+<div id="game"></div>
+
+<script>
+window.RufflePlayer = window.RufflePlayer || {};
+window.addEventListener("DOMContentLoaded", () => {
+    const ruffle = window.RufflePlayer.newest();
+    const player = ruffle.createPlayer();
+    document.getElementById("game").appendChild(player);
+
+    player.style.width = "100vw";
+    player.style.height = "100vh";
+
+    player.load("./miragine.swf"); // SWF in same folder
+});
+</script>
+
 </body>
 </html>
