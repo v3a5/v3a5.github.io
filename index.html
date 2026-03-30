@@ -36,14 +36,6 @@ img {
   margin-left: auto;
   margin-right: auto;
 }
-
-button {
-  margin: 10px;
-  padding: 8px 14px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
 </style>
 </head>
 
@@ -63,49 +55,14 @@ let links = [];
 window.onload = function () {
     links = Array.from(document.getElementsByTagName("a"));
 
-    // LOAD DARK MODE FROM STORAGE
-    if (localStorage.getItem("darkMode") === "enabled") {
+    // AUTO DARK MODE (based on system preference)
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
         document.body.classList.add("dark");
     }
 };
-
-function searchLinks() {
-    let query = document.getElementById("searchInput").value.toLowerCase();
-    if (!query) return;
-
-    links.forEach(link => {
-        let text = link.textContent.toLowerCase();
-        let href = link.getAttribute("href")?.toLowerCase() || "";
-
-        if (text.includes(query) || href.includes(query)) {
-            link.style.display = "";
-        } else {
-            link.style.display = "none";
-        }
-    });
-}
-
-function clearSearch() {
-    links.forEach(link => {
-        link.style.display = "";
-    });
-}
-
-// DARK MODE TOGGLE + SAVE
-function toggleDarkMode() {
-    document.body.classList.toggle("dark");
-
-    if (document.body.classList.contains("dark")) {
-        localStorage.setItem("darkMode", "enabled");
-    } else {
-        localStorage.setItem("darkMode", "disabled");
-    }
-}
 </script>
 
 <body>
-
-<button onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
 <div>
   <a href="/play/2048/">2048</a> -
