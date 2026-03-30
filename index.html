@@ -23,12 +23,17 @@
     body {
       background-color: var(--bg-color);
       color: var(--text-color);
-      background-image: url("");
+      background-image: none;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 300px 300px; /* 🔥 fixed size */
       transition: 0.3s;
     }
 
     a {
       color: var(--link-color);
+      display: inline-block;
+      margin: 5px;
     }
 
     h1, h2, p, div, form {
@@ -54,55 +59,79 @@
 <script src="/play/burritobison/js/dev-menu.js"></script>
 
 <script>
-let links = [];
-
 window.onload = function () {
-    links = Array.from(document.getElementsByTagName("a"));
+    const links = Array.from(document.getElementsByTagName("a"));
 
-    // AUTO DARK MODE (based on system preference)
+    // AUTO DARK MODE
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
         document.body.classList.add("dark");
     }
+
+    links.forEach(link => {
+        link.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            // Extract image name from text
+            const textParts = this.textContent.split(" - to ");
+            let imageFile = "";
+
+            if (textParts.length === 2) {
+                imageFile = textParts[1].trim();
+            }
+
+            if (imageFile) {
+                const imagePath = `/images/${imageFile}`;
+
+                // Set 300x300 centered image
+                document.body.style.backgroundImage = `url("${imagePath}")`;
+            }
+
+            // Small delay so user sees the icon flash before redirect
+            setTimeout(() => {
+                window.location.href = this.href;
+            }, 200);
+        });
+    });
 };
 </script>
 
 <body>
 
 <div>
-  <a href="/play/2048/">2048</a> -
-  <a href="/play/angry-birds-2/">angry birds 2</a> -
-  <a href="/play/bad-piggies/">bad piggies</a> -
-  <a href="/play/baldis-basics/">baldis basics</a> -
-  <a href="/play/baldis-basics-classic-remastered/">baldis basics classic remastered</a> -
-  <a href="/play/block-blast/">block blast</a> -
-  <a href="/play/btd5/">bloons td5</a> -
-  <a href="/play/burritobison/">burrito bison</a> -
-  <a href="/play/chromedino/">chrome dino</a> -
-  <a href="/play/cookieclicker/">cookie clicker</a> -
-  <a href="/play/dadish/">dadish</a> -
-  <a href="/play/dadish-2/">dadish 2</a> -
-  <a href="/play/deltarune/">deltarune</a> -
-  <a href="/play/drivemad/">drive mad</a> -
-  <a href="/play/flappy-bird/">flappy bird</a> -
-  <a href="/play/fnf/">friday night funkin</a> -
-  <a href="/play/fruitninja/">fruit ninja</a> -
-  <a href="/play/geometry-dash-world/">geometry dash world</a> -
-  <a href="/play/granny/">granny</a> -
-  <a href="/play/minecraft/">minecraft</a> -
-  <a href="/play/motox3m2/">moto x3m 2</a> -
-  <a href="/play/pvz/">plants vs zombies</a> -
-  <a href="/play/ragdollarchers/">ragdoll archers</a> -
-  <a href="/play/ragdollhit/">ragdoll hit</a> -
-  <a href="/play/repo/">R.E.P.O</a> -
-  <a href="/play/retry/">retry</a> -
-  <a href="/play/scarymaze/">scary maze</a> -
-  <a href="/play/stickmanhook/">stickman hook</a> -
-  <a href="/play/subwaysurfers/">subway surfers</a> -
-  <a href="/play/tag/">tag</a> -
-  <a href="/play/templerun/">temple run</a> -
-  <a href="/play/totm/">tomb of the mask</a> -
-  <a href="/play/ultrakill/">ULTRAKILL</a> -
-  <a href="/play/imagine_dragons/">miragine war of deez</a> -
+  <a href="/play/2048/">2048</a> - to 2048.png
+  <a href="/play/angry-birds-2/">angry birds 2</a> - to angrybirds2.png
+  <a href="/play/bad-piggies/">bad piggies</a> - to badpiggies.jfif
+  <a href="/play/baldis-basics/">baldis basics</a> - to baldis.jpg
+  <a href="/play/baldis-basics-classic-remastered/">baldis basics classic remastered</a> - to baldis2.png
+  <a href="/play/block-blast/">block blast</a> - to blockblast.png
+  <a href="/play/btd5/">bloons td5</a> - to btd5.png
+  <a href="/play/burritobison/">burrito bison</a> - to burrito.jpg
+  <a href="/play/chromedino/">chrome dino</a> - to chromedino.png
+  <a href="/play/cookieclicker/">cookie clicker</a> - to ck.png
+  <a href="/play/dadish/">dadish</a> - to dadish.jpg
+  <a href="/play/dadish-2/">dadish 2</a> - to dadish2.png
+  <a href="/play/deltarune/">deltarune</a> - to deltarune.png
+  <a href="/play/drivemad/">drive mad</a> - to drivemad.png
+  <a href="/play/flappy-bird/">flappy bird</a> - to flappybird.jfif
+  <a href="/play/fnf/">friday night funkin</a> - to fnf.png
+  <a href="/play/fruitninja/">fruit ninja</a> - to fruitninja.png
+  <a href="/play/geometry-dash-world/">geometry dash world</a> - to geometry-world.png
+  <a href="/play/granny/">granny</a> - to granny.png
+  <a href="/play/minecraft/">minecraft</a> - to mc.png
+  <a href="/play/motox3m2/">moto x3m 2</a> - to moto2.jpg
+  <a href="/play/pvz/">plants vs zombies</a> - to pvz.png
+  <a href="/play/ragdollarchers/">ragdoll archers</a> - to ragdoll archers.png
+  <a href="/play/ragdollhit/">ragdoll hit</a> - to ragdollhit.png
+  <a href="/play/repo/">R.E.P.O</a> - to repo.png
+  <a href="/play/retry/">retry</a> - to retry.png
+  <a href="/play/scarymaze/">scary maze</a> - to scary.jpg
+  <a href="/play/stickmanhook/">stickman hook</a> - to stickman.png
+  <a href="/play/subwaysurfers/">subway surfers</a> - to subway.png
+  <a href="/play/tag/">tag</a> - to tag.png
+  <a href="/play/templerun/">temple run</a> - to temple.png
+  <a href="/play/totm/">tomb of the mask</a> - to tomb.png
+  <a href="/play/ultrakill/">ULTRAKILL</a> - to ultrakill.png
+  <a href="/play/imagine_dragons/">miragine war of deez</a> - to miragine.png
 
   <div style="margin-left:auto;margin-right:auto;text-align:center">
     <h1>wheres sbr.</h1>
