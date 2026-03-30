@@ -3,7 +3,6 @@
 <head>
   <title>steel ball run</title>
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
   <link rel="apple-touch-icon" href="/images/favicon-32x32.png">
 
@@ -22,109 +21,265 @@
       background-color: var(--bg-color);
       color: var(--text-color);
       transition: 0.3s;
-      font-family: sans-serif;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
     }
 
     h1 {
       text-align: center;
+      margin-bottom: 10px;
     }
 
-    /* GRID LAYOUT */
+    .top-gif {
+      display: block;
+      margin: 0 auto 25px auto;
+      width: 50%;
+      max-width: 300px;
+    }
+
     .game-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
+      justify-content: center;
+      gap: 18px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    /* IMAGE STYLE */
-    .game-grid a img {
-      width: 100%;
-      max-width: 300px;
-      height: 300px;
-      object-fit: cover;
+    .game-card {
+      position: relative;
+      display: block;
+      width: 150px;
+      height: 150px;
+      overflow: hidden;
       border-radius: 12px;
-      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      background-color: #000;
     }
 
-    /* HOVER EFFECT */
-    .game-grid a img:hover {
+    .game-card img {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+      display: block;
+      filter: blur(2px);
       transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease, filter 0.2s ease;
+      background-color: rgba(0,0,0,0.2);
     }
 
-    .center {
+    .game-card:hover img {
+      transform: scale(1.1);
+      filter: blur(1px);
+    }
+
+    .game-title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
       text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 1.2;
+      width: 90%;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+      pointer-events: none;
     }
   </style>
 </head>
 
-<!-- existing scripts -->
-<script src="uv/uv.bundle.js" defer></script>
-<script src="uv/uv.config.js" defer></script>
-<script src="register-sw.js" defer></script>
-<script src="search.js" defer></script>
-<script src="index.js" defer></script>
-
-<!-- DEV MENU -->
+<script src="uv/uv.bundle.js" charset="UTF-8" defer></script>
+<script src="uv/uv.config.js" charset="UTF-8" defer></script>
+<script src="register-sw.js" charset="UTF-8" defer></script>
+<script src="search.js" charset="UTF-8" defer></script>
+<script src="index.js" charset="UTF-8" defer></script>
 <script src="/play/burritobison/js/dev-menu.js"></script>
 
 <script>
 window.onload = function () {
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.body.classList.add("dark");
-    }
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.body.classList.add("dark");
+  }
 };
 </script>
 
 <body>
+  <h1>wheres sbr.</h1>
+  <img src="/images/giphy.gif" alt="sbr gif" class="top-gif">
 
-<h1>wheres sbr.</h1>
+  <div class="game-grid">
+    <a class="game-card" href="/play/2048/">
+      <img src="/images/2048.png" alt="2048">
+      <div class="game-title">2048</div>
+    </a>
 
-<div class="game-grid">
+    <a class="game-card" href="/play/angry-birds-2/">
+      <img src="/images/angrybirds2.png" alt="angry birds 2">
+      <div class="game-title">Angry Birds 2</div>
+    </a>
 
-  <a href="/play/2048/"><img src="/images/2048.png" alt="2048"></a>
-  <a href="/play/angry-birds-2/"><img src="/images/angrybirds2.png" alt="angry birds 2"></a>
-  <a href="/play/bad-piggies/"><img src="/images/badpiggies.jfif" alt="bad piggies"></a>
-  <a href="/play/baldis-basics/"><img src="/images/baldis.jpg" alt="baldis basics"></a>
-  <a href="/play/baldis-basics-classic-remastered/"><img src="/images/baldis2.png" alt="baldis remastered"></a>
-  <a href="/play/block-blast/"><img src="/images/blockblast.png" alt="block blast"></a>
-  <a href="/play/btd5/"><img src="/images/btd5.png" alt="bloons td5"></a>
-  <a href="/play/burritobison/"><img src="/images/burrito.jpg" alt="burrito bison"></a>
-  <a href="/play/chromedino/"><img src="/images/chromedino.png" alt="chrome dino"></a>
-  <a href="/play/cookieclicker/"><img src="/images/ck.png" alt="cookie clicker"></a>
-  <a href="/play/dadish/"><img src="/images/dadish.jpg" alt="dadish"></a>
-  <a href="/play/dadish-2/"><img src="/images/dadish2.png" alt="dadish 2"></a>
-  <a href="/play/deltarune/"><img src="/images/deltarune.png" alt="deltarune"></a>
-  <a href="/play/drivemad/"><img src="/images/drivemad.png" alt="drive mad"></a>
-  <a href="/play/flappy-bird/"><img src="/images/flappybird.jfif" alt="flappy bird"></a>
-  <a href="/play/fnf/"><img src="/images/fnf.png" alt="fnf"></a>
-  <a href="/play/fruitninja/"><img src="/images/fruitninja.png" alt="fruit ninja"></a>
-  <a href="/play/geometry-dash-world/"><img src="/images/geometry-world.png" alt="geometry dash"></a>
-  <a href="/play/granny/"><img src="/images/granny.png" alt="granny"></a>
-  <a href="/play/minecraft/"><img src="/images/mc.png" alt="minecraft"></a>
-  <a href="/play/motox3m2/"><img src="/images/moto2.jpg" alt="moto x3m"></a>
-  <a href="/play/pvz/"><img src="/images/pvz.png" alt="pvz"></a>
-  <a href="/play/ragdollarchers/"><img src="/images/ragdoll archers.png" alt="ragdoll archers"></a>
-  <a href="/play/ragdollhit/"><img src="/images/ragdollhit.png" alt="ragdoll hit"></a>
-  <a href="/play/repo/"><img src="/images/repo.png" alt="repo"></a>
-  <a href="/play/retry/"><img src="/images/retry.png" alt="retry"></a>
-  <a href="/play/scarymaze/"><img src="/images/scary.jpg" alt="scary maze"></a>
-  <a href="/play/stickmanhook/"><img src="/images/stickman.png" alt="stickman hook"></a>
-  <a href="/play/subwaysurfers/"><img src="/images/subway.png" alt="subway surfers"></a>
-  <a href="/play/tag/"><img src="/images/tag.png" alt="tag"></a>
-  <a href="/play/templerun/"><img src="/images/temple.png" alt="temple run"></a>
-  <a href="/play/totm/"><img src="/images/tomb.png" alt="tomb of the mask"></a>
-  <a href="/play/ultrakill/"><img src="/images/ultrakill.png" alt="ultrakill"></a>
-  <a href="/play/imagine_dragons/"><img src="/images/miragine.png" alt="miragine"></a>
+    <a class="game-card" href="/play/bad-piggies/">
+      <img src="/images/badpiggies.jfif" alt="bad piggies">
+      <div class="game-title">Bad Piggies</div>
+    </a>
 
-</div>
+    <a class="game-card" href="/play/baldis-basics/">
+      <img src="/images/baldis.jpg" alt="baldis basics">
+      <div class="game-title">Baldis Basics</div>
+    </a>
 
-<div class="center">
-  <img src="images/giphy.gif" alt="sbr gif" style="width:50%; max-width:300px;">
-</div>
+    <a class="game-card" href="/play/baldis-basics-classic-remastered/">
+      <img src="/images/baldis2.png" alt="baldis basics classic remastered">
+      <div class="game-title">Baldis Basics Classic Remastered</div>
+    </a>
 
+    <a class="game-card" href="/play/block-blast/">
+      <img src="/images/blockblast.png" alt="block blast">
+      <div class="game-title">Block Blast</div>
+    </a>
+
+    <a class="game-card" href="/play/btd5/">
+      <img src="/images/btd5.png" alt="bloons td5">
+      <div class="game-title">Bloons TD5</div>
+    </a>
+
+    <a class="game-card" href="/play/burritobison/">
+      <img src="/images/burrito.jpg" alt="burrito bison">
+      <div class="game-title">Burrito Bison</div>
+    </a>
+
+    <a class="game-card" href="/play/chromedino/">
+      <img src="/images/chromedino.png" alt="chrome dino">
+      <div class="game-title">Chrome Dino</div>
+    </a>
+
+    <a class="game-card" href="/play/cookieclicker/">
+      <img src="/images/ck.png" alt="cookie clicker">
+      <div class="game-title">Cookie Clicker</div>
+    </a>
+
+    <a class="game-card" href="/play/dadish/">
+      <img src="/images/dadish.jpg" alt="dadish">
+      <div class="game-title">Dadish</div>
+    </a>
+
+    <a class="game-card" href="/play/dadish-2/">
+      <img src="/images/dadish2.png" alt="dadish 2">
+      <div class="game-title">Dadish 2</div>
+    </a>
+
+    <a class="game-card" href="/play/deltarune/">
+      <img src="/images/deltarune.png" alt="deltarune">
+      <div class="game-title">Deltarune</div>
+    </a>
+
+    <a class="game-card" href="/play/drivemad/">
+      <img src="/images/drivemad.png" alt="drive mad">
+      <div class="game-title">Drive Mad</div>
+    </a>
+
+    <a class="game-card" href="/play/flappy-bird/">
+      <img src="/images/flappybird.jfif" alt="flappy bird">
+      <div class="game-title">Flappy Bird</div>
+    </a>
+
+    <a class="game-card" href="/play/fnf/">
+      <img src="/images/fnf.png" alt="friday night funkin">
+      <div class="game-title">Friday Night Funkin</div>
+    </a>
+
+    <a class="game-card" href="/play/fruitninja/">
+      <img src="/images/fruitninja.png" alt="fruit ninja">
+      <div class="game-title">Fruit Ninja</div>
+    </a>
+
+    <a class="game-card" href="/play/geometry-dash-world/">
+      <img src="/images/geometry-world.png" alt="geometry dash world">
+      <div class="game-title">Geometry Dash World</div>
+    </a>
+
+    <a class="game-card" href="/play/granny/">
+      <img src="/images/granny.png" alt="granny">
+      <div class="game-title">Granny</div>
+    </a>
+
+    <a class="game-card" href="/play/minecraft/">
+      <img src="/images/mc.png" alt="minecraft">
+      <div class="game-title">Minecraft</div>
+    </a>
+
+    <a class="game-card" href="/play/motox3m2/">
+      <img src="/images/moto2.jpg" alt="moto x3m 2">
+      <div class="game-title">Moto X3M 2</div>
+    </a>
+
+    <a class="game-card" href="/play/pvz/">
+      <img src="/images/pvz.png" alt="plants vs zombies">
+      <div class="game-title">Plants vs Zombies</div>
+    </a>
+
+    <a class="game-card" href="/play/ragdollarchers/">
+      <img src="/images/ragdoll archers.png" alt="ragdoll archers">
+      <div class="game-title">Ragdoll Archers</div>
+    </a>
+
+    <a class="game-card" href="/play/ragdollhit/">
+      <img src="/images/ragdollhit.png" alt="ragdoll hit">
+      <div class="game-title">Ragdoll Hit</div>
+    </a>
+
+    <a class="game-card" href="/play/repo/">
+      <img src="/images/repo.png" alt="R.E.P.O">
+      <div class="game-title">R.E.P.O</div>
+    </a>
+
+    <a class="game-card" href="/play/retry/">
+      <img src="/images/retry.png" alt="retry">
+      <div class="game-title">Retry</div>
+    </a>
+
+    <a class="game-card" href="/play/scarymaze/">
+      <img src="/images/scary.jpg" alt="scary maze">
+      <div class="game-title">Scary Maze</div>
+    </a>
+
+    <a class="game-card" href="/play/stickmanhook/">
+      <img src="/images/stickman.png" alt="stickman hook">
+      <div class="game-title">Stickman Hook</div>
+    </a>
+
+    <a class="game-card" href="/play/subwaysurfers/">
+      <img src="/images/subway.png" alt="subway surfers">
+      <div class="game-title">Subway Surfers</div>
+    </a>
+
+    <a class="game-card" href="/play/tag/">
+      <img src="/images/tag.png" alt="tag">
+      <div class="game-title">Tag</div>
+    </a>
+
+    <a class="game-card" href="/play/templerun/">
+      <img src="/images/temple.png" alt="temple run">
+      <div class="game-title">Temple Run</div>
+    </a>
+
+    <a class="game-card" href="/play/totm/">
+      <img src="/images/tomb.png" alt="tomb of the mask">
+      <div class="game-title">Tomb of the Mask</div>
+    </a>
+
+    <a class="game-card" href="/play/ultrakill/">
+      <img src="/images/ultrakill.png" alt="ULTRAKILL">
+      <div class="game-title">ULTRAKILL</div>
+    </a>
+
+    <a class="game-card" href="/play/imagine_dragons/">
+      <img src="/images/miragine.png" alt="miragine war of deez">
+      <div class="game-title">Miragine War of Deez</div>
+    </a>
+  </div>
 </body>
 </html>
