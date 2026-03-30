@@ -2,25 +2,50 @@
 <html>
 <head>
 <title>steel ball run</title>
-</head>
-<!-- rebuild -->
+
 <style>
-body {
-  background-image: url("");
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --link-color: #0000ee;
 }
 
-h1 {text-align: center;}
-h2 {text-align: center;}
-p {text-align: center;}
-div {text-align: center;}
-form {text-align: center;}
+body.dark {
+  --bg-color: #121212;
+  --text-color: #f5f5f5;
+  --link-color: #4da3ff;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  background-image: url("");
+  transition: 0.3s;
+}
+
+a {
+  color: var(--link-color);
+}
+
+h1, h2, p, div, form {
+  text-align: center;
+}
 
 img {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
+
+button {
+  margin: 10px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
 </style>
+</head>
 
 <!-- existing scripts -->
 <script src="uv/uv.bundle.js" charset="UTF-8" defer></script>
@@ -32,17 +57,16 @@ img {
 <!-- DEV MENU -->
 <script src="/play/burritobison/js/dev-menu.js"></script>
 
-<center>
-    <input type="text" id="searchInput" placeholder="use search button dude">
-    <button onclick="searchLinks()">Search</button>
-    <button onclick="clearSearch()">Clear</button>
-</center>
-
 <script>
 let links = [];
 
 window.onload = function () {
     links = Array.from(document.getElementsByTagName("a"));
+
+    // LOAD DARK MODE FROM STORAGE
+    if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark");
+    }
 };
 
 function searchLinks() {
@@ -66,56 +90,71 @@ function clearSearch() {
         link.style.display = "";
     });
 }
+
+// DARK MODE TOGGLE + SAVE
+function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+
+    if (document.body.classList.contains("dark")) {
+        localStorage.setItem("darkMode", "enabled");
+    } else {
+        localStorage.setItem("darkMode", "disabled");
+    }
+}
 </script>
 
-<body> 
-  <div>
-    <a href="/play/2048/">2048</a> -
-    <a href="/play/angry-birds-2/">angry birds 2</a> -
-    <a href="/play/bad-piggies/">bad piggies</a> -
-    <a href="/play/baldis-basics/">baldis basics</a> -
-    <a href="/play/baldis-basics-classic-remastered/">baldis basics classic remastered</a> -
-    <a href="/play/bendy-and-the-ink-machine/">bendy and the ink machine</a> -
-    <a href="/play/block-blast/">block blast</a> -
-    <a href="/play/btd5/">bloons td5</a> -
-    <a href="/play/burritobison/">burrito bison</a> -
-    <a href="/play/chromedino/">chrome dino</a> -
-    <a href="/play/cookieclicker/">cookie clicker</a> -
-    <a href="/play/dadish/">dadish</a> -
-    <a href="/play/dadish-2/">dadish 2</a> -
-    <a href="/play/deltarune/">deltarune</a> -
-    <a href="/play/drivemad/">drive mad</a> -
-    <a href="/play/flappy-bird/">flappy bird</a> -
-    <a href="/play/fnf/">friday night funkin</a> -
-    <a href="/play/fruitninja/">fruit ninja</a> -
-    <a href="/play/geometry-dash-world/">geometry dash world</a> -
-    <a href="/play/granny/">granny</a> -
-    <a href="/play/minecraft/">minecraft</a> -
-    <a href="/play/motox3m2/">moto x3m 2</a> -
-    <a href="/play/people-playground/">people playground</a> -
-    <a href="/play/monkeymart/">monkey mart</a> -
-    <a href="/play/pvz/">plants vs zombies</a> -
-    <a href="/play/ragdollarchers/">ragdoll archers</a> -
-    <a href="/play/ragdollhit/">ragdoll hit</a> -
-    <a href="/play/red-ball-4/">red ball 4</a> -
-    <a href="/play/repo/">R.E.P.O</a> -
-    <a href="/play/retry/">retry</a> -
-    <a href="/play/roper/">roper</a> -
-    <a href="/play/scarymaze/">scary maze</a> -
-    <a href="/play/smash-karts/">smash karts</a> -
-    <a href="/play/stickmanhook/">stickman hook</a> -
-    <a href="/play/subwaysurfers/">subway surfers</a> -
-    <a href="/play/tag/">tag</a> -
-    <a href="/play/templerun/">temple run</a> -
-    <a href="/play/totm/">tomb of the mask</a> -
-    <a href="/play/ultrakill/">ULTRAKILL</a> -
-    <a href="/play/undertale/">UNDERTALE</a> -
-    <a href="/play/xx142-b2exe/">XX142-B2.EXE</a> -
+<body>
 
-    <div style="margin-left:auto;margin-right:auto;text-align:center">
-      <h1>wheres sbr.</h1>
-      <img src="images/giphy.gif" alt="sbr gif" style="width:50%; max-width:500px;">
-    </div>
+<button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+<div>
+  <a href="/play/2048/">2048</a> -
+  <a href="/play/angry-birds-2/">angry birds 2</a> -
+  <a href="/play/bad-piggies/">bad piggies</a> -
+  <a href="/play/baldis-basics/">baldis basics</a> -
+  <a href="/play/baldis-basics-classic-remastered/">baldis basics classic remastered</a> -
+  <a href="/play/bendy-and-the-ink-machine/">bendy and the ink machine</a> -
+  <a href="/play/block-blast/">block blast</a> -
+  <a href="/play/btd5/">bloons td5</a> -
+  <a href="/play/burritobison/">burrito bison</a> -
+  <a href="/play/chromedino/">chrome dino</a> -
+  <a href="/play/cookieclicker/">cookie clicker</a> -
+  <a href="/play/dadish/">dadish</a> -
+  <a href="/play/dadish-2/">dadish 2</a> -
+  <a href="/play/deltarune/">deltarune</a> -
+  <a href="/play/drivemad/">drive mad</a> -
+  <a href="/play/flappy-bird/">flappy bird</a> -
+  <a href="/play/fnf/">friday night funkin</a> -
+  <a href="/play/fruitninja/">fruit ninja</a> -
+  <a href="/play/geometry-dash-world/">geometry dash world</a> -
+  <a href="/play/granny/">granny</a> -
+  <a href="/play/minecraft/">minecraft</a> -
+  <a href="/play/motox3m2/">moto x3m 2</a> -
+  <a href="/play/people-playground/">people playground</a> -
+  <a href="/play/monkeymart/">monkey mart</a> -
+  <a href="/play/pvz/">plants vs zombies</a> -
+  <a href="/play/ragdollarchers/">ragdoll archers</a> -
+  <a href="/play/ragdollhit/">ragdoll hit</a> -
+  <a href="/play/red-ball-4/">red ball 4</a> -
+  <a href="/play/repo/">R.E.P.O</a> -
+  <a href="/play/retry/">retry</a> -
+  <a href="/play/roper/">roper</a> -
+  <a href="/play/scarymaze/">scary maze</a> -
+  <a href="/play/smash-karts/">smash karts</a> -
+  <a href="/play/stickmanhook/">stickman hook</a> -
+  <a href="/play/subwaysurfers/">subway surfers</a> -
+  <a href="/play/tag/">tag</a> -
+  <a href="/play/templerun/">temple run</a> -
+  <a href="/play/totm/">tomb of the mask</a> -
+  <a href="/play/ultrakill/">ULTRAKILL</a> -
+  <a href="/play/undertale/">UNDERTALE</a> -
+  <a href="/play/xx142-b2exe/">XX142-B2.EXE</a> -
+
+  <div style="margin-left:auto;margin-right:auto;text-align:center">
+    <h1>wheres sbr.</h1>
+    <img src="images/giphy.gif" alt="sbr gif" style="width:50%; max-width:500px;">
   </div>
+</div>
+
 </body>
 </html>
